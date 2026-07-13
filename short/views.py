@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .models import short_url
 from .serializer import short_url_serializer,update_url_serializer,basic_serializer
 from rest_framework import status
+from django.shortcuts import redirect
 # Create your views here.
 
 
@@ -56,5 +57,10 @@ class get_long_url(APIView):
             data
         )
 
+
+class redirect_url(APIView):
+    def get(self,request,short_code):
+        link=short_url.objects.get(short_code=short_code)
+        return redirect(link.long_url)
 
      

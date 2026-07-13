@@ -33,10 +33,12 @@ class update_url_serializer(serializers.ModelSerializer):
         short=hash[3:9]
 
         validated_data["short_code"]=short
-        instance.save
+        instance.save()
         return instance
         
 class basic_serializer(ModelSerializer):
     class Meta:
         model=short_url
         fields="__all__"
+
+
